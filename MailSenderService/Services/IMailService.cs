@@ -4,6 +4,6 @@ namespace MailSenderService.Services
 {
     public interface IMailService
     {
-        Task SendEmailAsync(MailRequest mailRequest, CancellationToken token);
+        Task SendEmailAsync(MailMessage mailRequest, CancellationToken token);
     }
 }

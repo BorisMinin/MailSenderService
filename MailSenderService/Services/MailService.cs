@@ -10,24 +10,34 @@ namespace MailSenderService.Services
     public class MailService : IMailService
     {
         private readonly MailSettings _mailSettings;
+        private readonly IConfiguration _configuration;
 
-        public MailService(IOptionsSnapshot<MailSettings> mailSettings) => _mailSettings = mailSettings.Value;
-
-        public async Task SendEmailAsync(MailRequest mailRequest, CancellationToken token)
+        public MailService(IOptions<MailSettings> mailSettings, IConfiguration configuration)
         {
-            // Create email message
+            _mailSettings = mailSettings.Value;
+            _configuration = configuration;
+        }
+
+        public async Task SendEmailAsync(MailMessage mailRequest, CancellationToken token)
+        {
+            Console.WriteLine(_mailSettings.Host);
+            Console.WriteLine(_configuration.GetSection("MailSettings:Port"));
+
+            // Create email message.
             var email = CreateEmailMessage(mailRequest);
 
-            // Add attachments
+            // Add attachments.
             AddAttachmentsToEmail(email, mailRequest);
 
-            // Send email
+            // Send email.
             await SendEmail(email, token);
         }
 
-        private MimeMessage CreateEmailMessage(MailRequest mailRequest)
+        private MimeMessage CreateEmailMessage(MailMessage mailRequest)
         {
             var email = new MimeMessage();
+
+            Console.WriteLine(_mailSettings.Host);
 
             email.Sender = MailboxAddress.Parse(_mailSettings.Mail);
             email.To.Add(MailboxAddress.Parse(mailRequest.ToEmail));
@@ -37,7 +47,7 @@ namespace MailSenderService.Services
             return email;
         }
 
-        private void AddAttachmentsToEmail(MimeMessage email, MailRequest mailRequest)
+        private void AddAttachmentsToEmail(MimeMessage email, MailMessage mailRequest)
         {
             if (mailRequest.Attachments != null)
             {

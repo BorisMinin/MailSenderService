@@ -14,9 +14,8 @@ namespace MailSenderService
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.Configure<MailSettings>(configuration.GetSection(MailSettings.Key));
-
-            //builder.Services.Configure<MailSettings>(configuration.GetSection("MailSettings"));
+            builder.Services.Configure<MailSettings>(
+                builder.Configuration.GetSection("MailSettings"));
 
             builder.Services.AddTransient<IMailService, MailService>();
 
@@ -28,13 +27,13 @@ namespace MailSenderService
                 app.UseSwaggerUI();
             }
 
-            // send email
-            app.MapPost("/sendMail", async (MailRequest mailRequest, CancellationToken token, IMailService mailService) =>
+            // send email.
+            app.MapPost("/sendMail", async (MailMessage mailRequest, CancellationToken token, IMailService mailService) =>
             {
                 await mailService.SendEmailAsync(mailRequest, token);
             })
             .WithName("SendMail")
-            .WithOpenApi(); ;
+            .WithOpenApi();
 
             app.Run();
         }
