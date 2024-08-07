@@ -1,4 +1,4 @@
-# Mail sending service.
+# Mail sending service
 ## Description
 The MailSenderService application is a basic email sending implementation that takes a pre-configured email and sends it to the recipient.
 > This service is one of the many third-party tools commonly found in commercial development.
