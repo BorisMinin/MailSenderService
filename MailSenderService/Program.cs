@@ -17,7 +17,7 @@ namespace MailSenderService
             builder.Services.Configure<MailSettings>(
                 builder.Configuration.GetSection("MailSettings"));
 
-            builder.Services.AddTransient<IMailService, MailService>();
+            builder.Services.AddScoped<IMailService, MailService>();
 
             var app = builder.Build();
 
