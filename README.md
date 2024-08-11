@@ -16,3 +16,7 @@ To be able to send an email using MailSenderService, you need to specify the con
 
 ### Where can I obtain these confidential data/parameters?
 These details are provided by your SMTP client. It could be SendGrid, Google Workspace, or even a Fake SMTP Provider like Ethereal. Regardless of which one you choose, make sure to specify all the data/parameters in the appsettings.json configuration file. <font color="red">**And remember, publishing confidential data/parameters publicly can be dangerous and may lead to your data being compromised!**</font>
+
+## Used links
+**Send Emails with .Net:**
+https://codewithmukesh.com/blog/send-emails-with-aspnet-core/
