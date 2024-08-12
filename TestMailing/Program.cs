@@ -1,3 +1,4 @@
+using MailSenderService.Services;
 
 namespace TestMailing
 {
@@ -7,9 +8,11 @@ namespace TestMailing
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-
             builder.Services.AddControllers();
+
+            builder.Services.ConfigureOptions<ApplicationOptionsSetup>();
+            builder.Services.AddScoped<IMailingService, MailingService>();
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -26,7 +29,6 @@ namespace TestMailing
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 

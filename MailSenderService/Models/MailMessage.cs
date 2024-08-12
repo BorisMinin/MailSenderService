@@ -1,4 +1,6 @@
-﻿namespace MailSenderService.Models
+﻿using Microsoft.AspNetCore.Http;
+
+namespace MailSenderService.Models
 {
     /// <summary>
     /// Represents a mail message to be sent by the mail sender service.
