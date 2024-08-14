@@ -19,7 +19,7 @@ To be able to send an email using MailSenderService, you need to specify the con
 These details are provided by your SMTP client. It could be SendGrid, Google Workspace, or even a Fake SMTP Provider like Ethereal. Regardless of which one you choose, make sure to specify all the data/parameters in the appsettings.json configuration file. <font color="red">**And remember, publishing confidential data/parameters publicly can be dangerous and may lead to your data being compromised!**</font>
 
 ### How to send email?
-Для отправки письма необходимо передать следующие параметры:
+To send a mail, you must pass the following parameters:
 
 | Key         | Description                                                  |
 |-------------|--------------------------------------------------------------|
