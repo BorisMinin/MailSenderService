@@ -5,7 +5,7 @@ namespace MailSenderService.Models
     /// <summary>
     /// Represents a mail message to be sent by the mail sender service.
     /// </summary>
-    public class MailMessage
+    public class MailRequest
     {
         // Recipient's email address.
         public string ToEmail { get; set; }

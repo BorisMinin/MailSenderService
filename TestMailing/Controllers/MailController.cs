@@ -13,7 +13,7 @@ namespace TestMailing.Controllers
         public MailController(IMailingService mailService) => _mailService = mailService;
 
         [HttpPost]  
-        public async Task SendEmailAsync(MailMessage mailRequest, CancellationToken token)
+        public async Task SendEmailAsync(MailRequest mailRequest, CancellationToken token)
         {
             await _mailService.SendEmailAsync(mailRequest, token);
         }
